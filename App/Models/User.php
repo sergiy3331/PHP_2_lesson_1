@@ -1,7 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Сергий_2
- * Date: 08.02.2016
- * Time: 21:37
- */ 
+
+namespace App\Models;
+
+use App\Db;
+
+class User
+{
+    const TABLE = 'users';
+
+    public $email;
+    public $name;
+
+    public static function findAll()
+    {
+        $db = new Db();
+        return $db->query('SELECT * FROM ' . self::TABLE, self::class);
+
+    }
+}
