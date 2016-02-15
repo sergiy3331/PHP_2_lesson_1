@@ -1,15 +1,23 @@
 <?php
 
 namespace App;
-
+use App\Config;
+use App\TSinglton;
 
 class Db
 {
+    use TSinglton;
     protected $dbh;
 
     public function __construct()
     {
-        $this->dbh = new \PDO('mysql:host=127.0.0.1;dbname=test', 'root', '');
+        $config = Config::instance();
+        $this->dbh = new \PDO(
+            $config->data['db']['driver'] . ':host='.
+            $config->data['db']['host'] .';dbname=' .
+            $config->data['db']['dbname'],
+            $config->data['db']['user'],
+            $config->data['db']['password']);
     }
 
     public function execute($sql, $arg = [])
