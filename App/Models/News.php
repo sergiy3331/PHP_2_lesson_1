@@ -12,4 +12,5 @@ class News extends Model
     public $title;
     public $text;
     public $author;
-} 
+}
+

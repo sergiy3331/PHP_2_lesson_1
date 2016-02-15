@@ -17,14 +17,14 @@ abstract class Model
     public static function findById($id)
     {
         $db = new Db();
-        return $db->query('SELECT * FROM ' . static::TABLE . ' WHERE ' . static::FK .
-            ' =:id ', static::class, [':id '=>$id])[0] ? : false;
+        return $db->query(' SELECT * FROM ' . static::TABLE . ' WHERE ' . static::FK .
+            ' =:id ', static::class);
     }
 
     public static function findLastNews($limit)
     {
         $db = new Db();
-        return $db->query('SELECT * FROM ' . static::TABLE . ' ORDER BY id DESC LIMIT ' .
-            $limit, static::class);
+        return $db->query('SELECT * FROM ' . static::TABLE . ' ORDER BY ' . static::FK .
+            ' DESC LIMIT ' . $limit, static::class);
     }
 }
