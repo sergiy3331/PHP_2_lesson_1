@@ -11,21 +11,21 @@ abstract class Model
 
     public static function findAll()
     {
-        $db = new Db();
-        return $db->query('SELECT * FROM ' . static::TABLE, static::class);
+        $db = Db::instance();
+        return $db->query('SELECT * FROM ' . static::TABLE, [], static::class);
 
     }
 
     public static function findById($id)
     {
-        $db = new Db();
-        return $db->query(' SELECT * FROM ' . static::TABLE . ' WHERE ' . static::FK .
-            ' =:id ', static::class);
+        $db = Db::instance();
+        return $db->query(' SELECT * FROM ' . static::TABLE . ' WHERE id =:id',
+            [':id' => $id], static::class);
     }
 
     public static function findLastNews($limit)
     {
-        $db = new Db();
+        $db = Db::instance();
         return $db->query('SELECT * FROM ' . static::TABLE . ' ORDER BY ' . static::FK .
             ' DESC LIMIT ' . $limit, static::class);
     }
